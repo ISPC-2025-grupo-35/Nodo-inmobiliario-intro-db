@@ -26,4 +26,6 @@ La herramienta ideal para acceder a los espacios más destacados sin complicacio
 
 Puedo aportar a cualquier proyecto una combinación sólida de experiencia concreta en desarrollo fullstack y una fuerte capacidad para la gestión interpersonal y de equipos, gracias a mi formación y práctica como psicólogo clínico. He liderado equipos, coordinado proyectos aplicando metodologías ágiles, y desarrollado soluciones eficientes y personalizadas en contextos reales. Mi enfoque colaborativo, mi capacidad de análisis y resolución de problemas, junto con una comunicación empática y clara, me permiten integrarme rápidamente, generar valor en el equipo y contribuir al desarrollo de productos sólidos, funcionales y orientados a las necesidades de los usuarios.
 
-*Santiago Terragni
+* [Santiago Terragni](https://github.com/santiterragni) .
+
+Puedo aportar mis conocimientos y herramientas por medio de mi experiencia en el trabajo de grupos. Actualmente me encuentro trabajando en proyectos de mejora continua y desarrollo de equipos por medio de implementación, seguimiento y control de actividades interáreas. 
