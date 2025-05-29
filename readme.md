@@ -25,3 +25,5 @@ La herramienta ideal para acceder a los espacios más destacados sin complicacio
 * [Guillermo Diván](https://github.com/GuillermoDivan) .
 
 Puedo aportar a cualquier proyecto una combinación sólida de experiencia concreta en desarrollo fullstack y una fuerte capacidad para la gestión interpersonal y de equipos, gracias a mi formación y práctica como psicólogo clínico. He liderado equipos, coordinado proyectos aplicando metodologías ágiles, y desarrollado soluciones eficientes y personalizadas en contextos reales. Mi enfoque colaborativo, mi capacidad de análisis y resolución de problemas, junto con una comunicación empática y clara, me permiten integrarme rápidamente, generar valor en el equipo y contribuir al desarrollo de productos sólidos, funcionales y orientados a las necesidades de los usuarios.
+
+*Santiago Terragni
