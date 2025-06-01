@@ -20,6 +20,10 @@ class User:
         self.role = role
         self._register_date = date.today()
         self.enabled = True
+
+    def __str__(self):
+        return f"User(id={self.user_id}, name={self.name}, surname={self.surname}, email={self.email}, role={self.role}, date={self._register_date}, enabled={self.enabled})"
+
         
 
     

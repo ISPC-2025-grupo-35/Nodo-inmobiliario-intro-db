@@ -1,23 +1,32 @@
 from models.User import User
 from models.User_role import RoleEnum
+from repositories.User_repository import UserRepository
 
 class UserService:
-    def __init__(self):
-        self._users = []
+    def __init__(self, repository: UserRepository):
+        self.__repository = repository
 
     def register(self, name: str, surname: str, email: str,
-                 password: str, role: RoleEnum) -> bool:
-        if (not name or not surname or not email or not password 
-            or not RoleEnum.has(role)):
-            return False
-        email_exists = any(filter(lambda u: u.email == email, self._users))
-        if email_exists:
-            return False
-        #TODO: AGREGAR VALIDACIÓN DE CONTRASEÑA.
-        user = User(name, surname, email, password, role)
-        self._users.append(user)
-        return user
+                 password: str, role: RoleEnum) -> User:
+        if not all([name, surname, email, password]) or not RoleEnum.has(role):
+            print("Mensaje sobre campos vacíos o rol mal escrito")
+            return None
 
+        already_exists = self.get_user_by_email(email)
+        if already_exists:
+            print("Mensaje sobre usuario ya existiendo")
+            return None
+
+        if len(password) < 6 or not any(c.isalpha() for c in password) or not any(c.isdigit() for c in password):
+            print("Password must be at least 6 characters long and contain both letters and numbers.")
+            return None
+        
+        created_user = User(name, surname, email, password, role)
+
+        self.__repository.register_user(created_user)
+
+        return created_user
+        
     def login(self, email: str, password: str) -> User:
         '''
         TODO: IMPLEMENTAR!
@@ -28,16 +37,27 @@ class UserService:
         '''
         return None
 
+    #Ponerlo solamente para ADMIN.
     def get_user_by_id(self, user_id: str) -> 'User':
-        user_exists = next(filter(lambda u: u.user_id == user_id, 
-                                  self._users), None)
-        return user_exists
+        data = UserRepository().get_user_by_id(user_id)
+        if data is None:
+            print("No se encontró el usuario buscado")
+            return None
+        user = User(data[1], data[2], data[3], data[4], data[5],)
+        user.user_id = data[0]
+        user._register_date = data[6]
+        user.enabled = data[7]
+        return user
 
     def get_user_by_email(self, user_email: str) -> 'User':
-        '''
-        Idéntico al get_user_by_id pero cambiar por user_email en lambda!
-        '''
-        pass
+        data = UserRepository().get_user_by_email(user_email)
+        if data is None:
+            return None
+        user = User(data[1], data[2], data[3], data[4], data[5], )
+        user.user_id = data[0]
+        user._register_date = data[6]
+        user.enabled = data[7]
+        return user 
 
     def get_all_users(self) -> list['User']:
         '''
@@ -46,8 +66,12 @@ class UserService:
         pass
 
     def get_all_users_by_role(self, role: RoleEnum) -> list['User']:
-        users_by_role = list(filter(lambda u: u.role == role, self._users))
-        return users_by_role
+        if not RoleEnum.has(role):
+            print("El rol asignado está mal escrito")
+            return None
+        repository = UserRepository().get_all_users_by_role(role)
+        users = list(repository)
+        return users
 
     def update_profile(self, user_id: str, updated_user: 'User') -> 'User':
         '''
@@ -60,6 +84,17 @@ class UserService:
         '''
         pass
 
+    #Ponerlo solamente para ADMIN.
+    def change_user_role(self, user_id: str, role: RoleEnum) -> bool:
+        if not RoleEnum.has(role):
+            print("El rol asignado está mal escrito")
+            return False
+        searched_user = self.get_user_by_id(user_id)
+        if searched_user is None:
+            return False
+        self.__repository.change_user_role(user_id, role)
+        return True
+
     def disable_account(self, user_email: str) -> bool:
         '''
         TODO: IMPLEMENTAR!
@@ -70,9 +105,3 @@ class UserService:
         Devolver el valor de enabled. 
         '''
         pass
-
-    def change_user_role(self, user_id: str, role: RoleEnum) -> bool:
-        # Debe corroborar que el rol de admin desde desde el menú!
-        searched_user = self.get_user_by_id(user_id)
-        searched_user.role = role
-        return searched_user.role
