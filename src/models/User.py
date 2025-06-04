@@ -1,6 +1,6 @@
 from datetime import date
 from typing import List
-from .User_role import RoleEnum
+from .Role_enum import RoleEnum
 import uuid
 
 class User:

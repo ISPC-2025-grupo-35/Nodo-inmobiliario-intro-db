@@ -1,5 +1,5 @@
 from models.User import User
-from models.User_role import RoleEnum
+from models.Role_enum import RoleEnum
 from repositories.User_repository import UserRepository
 
 class UserService:
