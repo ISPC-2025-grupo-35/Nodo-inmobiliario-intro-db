@@ -16,9 +16,9 @@ class User:
         self.name = name
         self.surname = surname
         self.email = email
-        self._password = password
+        self.__password = password
         self.role = role
-        self._register_date = date.today()
+        self.__register_date = date.today()
         self.enabled = True
 
     def __str__(self):
