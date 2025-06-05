@@ -61,12 +61,31 @@ class UserService:
         users = self.__repository.get_all_users_by_role(role)
         return users
 
-    def update_profile(self, user_id: str, updated_user: 'User') -> 'User':
-        pass
+    def update_user(self, name: str, surname: str, 
+                       email: str, password: str) -> 'User':
+        
+        if not all([name, surname, email, password]):
+            print("Error! No se permiten campos vacíos")
+            return None
 
-    #Ponerlo solamente para ADMIN.
+        if len(password) < 6 or not any(c.isalpha() for c in password) or not any(c.isdigit() for c in password):
+            print("Contraseña inválida. Recuerde que debe tener" \
+            "longitud de 6 caracteres mínimo e incluir letras y números.")
+            return None
+        
+        user = self.__repository.update_user(name=name, surname=surname,
+                                      password=password, email=email)
+
+        return user
+
+    #Solo para admin
     def change_user_role(self, user_id: str, role: RoleEnum) -> bool:
-        pass
+        searched_user = self.get_user_by_id(user_id)
+        if searched_user is None:
+            return False
+        self.__repository.change_user_role(user_id, role)
+        return True
 
     def disable_account(self, user_email: str) -> bool:
-        pass
+        self.__repository.disable_account(user_email)
+        return True

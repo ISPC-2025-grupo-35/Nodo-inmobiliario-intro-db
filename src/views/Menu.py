@@ -24,6 +24,10 @@ class Menu():
                 email = input("Ingrese su email: ")
                 password = input("Ingrese su contraseña. " \
                 "Recuerde que debe tener mínimo 6 caracteres e incluir números y letras: ")
+                repeat_password = input("Ingrese nuevamente su contraseña.")
+                if (password != repeat_password):
+                    print("Las contraseñas no coinciden. Vuelva a registrarse")
+                    continue
                 role = None
                 roleInput = input("Ingrese su rol. 1) Inquilino. 2) Dueño. 3) Admin: ")
                 match(roleInput):
@@ -133,7 +137,7 @@ class Menu():
                     disabled_user = self.__service.disable_account(input_email)
                     if (disabled_user):
                         self.current_user = None
-                        print("La cuenta se cerró exitosamente. Presione 0 para salir "
+                        print("La cuenta se eliminó exitosamente. Presione 0 para salir "
                         "o presione 2 para ingresar con otra cuenta.")
 
             elif option == "0":
