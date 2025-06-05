@@ -36,10 +36,18 @@ class UserRepository:
         return user_list
     
     def update_user(self, name: str, surname: str, email: str, password: str):
-        pass
-
+        searched_user = self.get_user_by_email(email)
+        searched_user.name = name
+        searched_user.surname = surname
+        searched_user.password = password
+        return searched_user
+    
     def change_user_role(self, user_id: str, role: RoleEnum):
-        pass
+        searched_user = self.get_user_by_id(user_id)
+        searched_user.role = role
+        return searched_user
 
     def disable_account(self, user_email: str):
-        pass
+        searched_user = self.get_user_by_email(user_email)
+        searched_user.enabled = False
+        return searched_user
