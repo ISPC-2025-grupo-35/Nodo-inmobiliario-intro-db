@@ -10,13 +10,13 @@ La herramienta ideal para acceder a los espacios más destacados sin complicacio
 
 ## ✨ Funcionalidades Principales (MVP)
 
-* Registro y gestión de usuarios según rol: Inquilino / Comprador,  Dueño de inmueble, Agente inmobiliario, Administrador del sistema
+* Registro y gestión de usuarios según rol: Inquilino / Comprador,  Dueño de inmueble, Agente inmobiliario, Administrador del sistema (ya desarrollado).
 
-* Publicación y exploración de propiedades: Alquiler, Compraventa. Visualización de detalles, imágenes y características clave.
+* Publicación y exploración de propiedades: Alquiler, Compraventa. Visualización de detalles, imágenes y características clave (coming soon).
 
-* Sistema de mensajería interna asincrónica para el contacto entre partes.
+* Sistema de mensajería interna asincrónica para el contacto entre partes (coming soon).
 
-* Visualización geográfica de los inmuebles mediante integración con mapas reales.
+* Visualización geográfica de los inmuebles mediante integración con mapas reales (coming soon).
 
 
 
