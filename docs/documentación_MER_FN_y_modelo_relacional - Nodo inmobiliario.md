@@ -4,15 +4,15 @@
 
 ###Entidades y atributos:
 
-* User: Representa a los usuarios del sistema (inquilinos, propietarios, etc.). Atributos: user_id (PK), name, surname, email, password, role, register_date, enabled.
+* User: Representa a los usuarios del sistema (inquilinos, propietarios, etc.). Atributos: user_id, name, surname, email, password, role, register_date, enabled.
 
-* Publication: Representan las distintas propiedades. Atributos: publication_id (PK implícita), user_id (FK), title, description, type, operation, price, city, status, sqr_mts, spaces, bedrooms, bathrooms, picture_url, registered_state, enabled.
+* Publication: Representan las distintas propiedades. Atributos: publication_id, user_id, title, description, type, operation, price, city, status, sqr_mts, spaces, bedrooms, bathrooms, picture_url, registered_state, enabled.
 
-* Address: Dirección física asociada a una publicación. Atributos: address_id (PK), publication_id (FK), street, number, floor, letter, neighborhood.
+* Address: Dirección física asociada a una publicación. Atributos: address_id, publication_id, street, number, floor, letter, neighborhood.
 
-* Conversation. Representa una conversación entre dos usuarios sobre una publicación. Atributos: conversation_id (PK), publication_id (FK), tenant_id (FK), landlord_id (FK), start_date, enabled.
+* Conversation. Representa una conversación entre dos usuarios sobre una publicación. Atributos: conversation_id, publication_id, tenant_id, landlord_id, start_date, enabled.
 
-* Message. Mensajes dentro de una conversación. Atributos: message_id (PK), conversation_id (FK), sender_id (FK), receiver_id (FK), content, date.
+* Message. Mensajes dentro de una conversación. Atributos: message_id, conversation_id, sender_id, receiver_id, content, date.
 
 
 ###Relaciones:
