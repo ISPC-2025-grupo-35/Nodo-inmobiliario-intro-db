@@ -29,11 +29,15 @@ class Menu():
                     continue
                 role = None
                 roleInput = input("Ingrese su rol. 1) Inquilino. 2) Dueño. 3) Admin: ")
-                match(roleInput):
-                    case "1": role = RoleEnum.TENANT
-                    case "2": role = RoleEnum.LANDLORD
-                    case "3": role = RoleEnum.ADMIN
-                    case _: print("Rol no reconocido. Ingrese un rol válido. \n")
+                if roleInput == "1":
+                    role = RoleEnum.TENANT
+                elif roleInput == "2":
+                    role = RoleEnum.LANDLORD
+                elif roleInput == "3":
+                    role = RoleEnum.ADMIN
+                else:
+                    print("Rol no reconocido. Ingrese un rol válido.\n")
+                    continue
                 created_user = self.__service.register(name=name, surname=surname, email=email,
                      password=password, role=role)
                 if (created_user):
@@ -61,11 +65,15 @@ class Menu():
                 role = None
                 while (role == None):
                     roleInput = input("Ingrese el rol buscado. 1) Inquilino. 2) Dueño. 3) Admin: ")
-                    match(roleInput):
-                        case "1": role = RoleEnum.TENANT
-                        case "2": role = RoleEnum.LANDLORD
-                        case "3": role = RoleEnum.ADMIN
-                        case _: print("Rol no reconocido. Ingrese un rol válido.")
+                    if roleInput == "1":
+                        role = RoleEnum.TENANT
+                    elif roleInput == "2":
+                        role = RoleEnum.LANDLORD
+                    elif roleInput == "3":
+                        role = RoleEnum.ADMIN
+                    else:
+                        print("Rol no reconocido. Ingrese un rol válido.\n")
+                        continue
                 data = self.__service.get_all_users_by_role(role)
                 if not data:
                     print("No se encuentran usuarios que cumplan la condición buscada. \n")
@@ -133,11 +141,15 @@ class Menu():
                 role = None
                 while (role == None):
                     roleInput = input("Ingrese el nuevo rol. 1) Inquilino. 2) Dueño. 3) Admin: ")
-                    match(roleInput):
-                        case "1": role = RoleEnum.TENANT
-                        case "2": role = RoleEnum.LANDLORD
-                        case "3": role = RoleEnum.ADMIN
-                        case _: print("Rol no reconocido. Ingrese un rol válido.")
+                    if roleInput == "1":
+                        role = RoleEnum.TENANT
+                    elif roleInput == "2":
+                        role = RoleEnum.LANDLORD
+                    elif roleInput == "3":
+                        role = RoleEnum.ADMIN
+                    else:
+                        print("Rol no reconocido. Ingrese un rol válido.\n")
+                        continue
                 user_id = input("Ingrese el id del usuario para modificarle el rol: ")
                 self.__service.change_user_role(user_id, role)
 
