@@ -1,5 +1,4 @@
 from services.User_service import UserService
-from models.User import User
 from models.Role_enum import RoleEnum
 
 class Menu():
@@ -50,7 +49,10 @@ class Menu():
                     print("Error, debe iniciar sesión primero! \n")
                     continue
                 data = self.__service.get_all_users()
-                print(f"Lista de usuarios activos: {data} \n")
+                if not data:
+                    print("No se encuentran usuarios activos en sistema! \n")
+                else:
+                    print(f"Lista de usuarios activos: {data} \n")
                 
             elif option == "4":
                 if (self.current_user == None):
@@ -65,7 +67,10 @@ class Menu():
                         case "3": role = RoleEnum.ADMIN
                         case _: print("Rol no reconocido. Ingrese un rol válido.")
                 data = self.__service.get_all_users_by_role(role)
-                print(f"Lista de usuarios con rol seleccionado: {data} \n")
+                if not data:
+                    print("No se encuentran usuarios que cumplan la condición buscada. \n")
+                else:
+                    print(f"Lista de usuarios con rol seleccionado: {data} \n")
 
             elif option == "5":
                 if (self.current_user == None):
@@ -76,7 +81,10 @@ class Menu():
                     continue
                 id = input("Ingrese el id del usuario que desea buscar.")
                 user_found = self.__service.get_user_by_id(id)
-                print(f"El usuario encontrado es: {user_found} \n")
+                if (user_found == None):
+                    print("No se encontró el usuario buscado.")
+                else:
+                    print(f"El usuario encontrado es: {user_found} \n")
 
             elif option == "6":
                 if (self.current_user == None):
@@ -89,7 +97,8 @@ class Menu():
                 user_found = self.__service.get_user_by_email(email)
                 if (user_found == None):
                     print("No se encontró el usuario buscado.")
-                print(f"El usuario encontrado es: {user_found} \n")
+                else:
+                    print(f"El usuario encontrado es: {user_found} \n")
 
             elif option == "7":
                 if (self.current_user == None):
