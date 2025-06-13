@@ -82,6 +82,9 @@ class Menu():
                 if (self.current_user == None):
                     print("Error, debe iniciar sesión primero! \n")
                     continue
+                if (self.current_user.role != RoleEnum.TENANT and self.current_user.role != RoleEnum.LANDLORD):
+                    print("Error, acción solo accesible para inquilino o dueño! \n")
+                    continue
                 email = input("Ingrese el email del usuario que desea buscar: ")
                 user_found = self.__service.get_user_by_email(email)
                 if (user_found == None):
