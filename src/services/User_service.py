@@ -9,17 +9,17 @@ class UserService:
     def register(self, name: str, surname: str, email: str,
                  password: str, role: RoleEnum) -> User:
         if not all([name, surname, email, password]):
-            print("Error! No se permiten campos vacíos")
+            print("Error! No se permiten campos vacíos. \n")
             return None
 
         already_exists = self.get_user_by_email(email)
         if already_exists:
-            print("Error! Este usuario ya se encuentra registrado! Proceda a iniciar sesión.")
+            print("Error! Este usuario ya se encuentra registrado! Proceda a iniciar sesión. \n")
             return None
 
         if len(password) < 6 or not any(c.isalpha() for c in password) or not any(c.isdigit() for c in password):
             print("Contraseña inválida. Recuerde que debe tener" \
-            "longitud de 6 caracteres mínimo e incluir letras y números.")
+            " longitud de 6 caracteres mínimo e incluir letras y números. \n")
             return None
         
         created_user = User(name, surname, email, password, role)
@@ -33,17 +33,17 @@ class UserService:
         if data is None:
             return None
         if data.password == password:
-            print(f"Acceso permitido! Hola {data.name}!")
+            print(f"Acceso permitido! Hola {data.name}! \n")
             return data
         else:
-            print("Acceso denegado, contraseña incorrecta.")
+            print("Acceso denegado, contraseña incorrecta. \n")
             return None
 
     #Solo para ADMIN.
     def get_user_by_id(self, user_id: str) -> 'User':
         user = self.__repository.get_user_by_id(user_id)
         if user is None:
-            print("No se encontró el usuario buscado.")
+            print("No se encontró el usuario buscado. \n")
             return None
         return user
 
@@ -65,12 +65,12 @@ class UserService:
                        email: str, password: str) -> 'User':
         
         if not all([name, surname, email, password]):
-            print("Error! No se permiten campos vacíos")
+            print("Error! No se permiten campos vacíos. \n")
             return None
 
         if len(password) < 6 or not any(c.isalpha() for c in password) or not any(c.isdigit() for c in password):
             print("Contraseña inválida. Recuerde que debe tener" \
-            "longitud de 6 caracteres mínimo e incluir letras y números.")
+            "longitud de 6 caracteres mínimo e incluir letras y números. \n")
             return None
         
         user = self.__repository.update_user(name=name, surname=surname,
