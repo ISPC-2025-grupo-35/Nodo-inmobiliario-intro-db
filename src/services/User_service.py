@@ -47,6 +47,7 @@ class UserService:
             return None
         return user
 
+    #Solo para USER (entrega ev3, lógica de negocio distinta).
     def get_user_by_email(self, user_email: str) -> 'User':
         user = self.__repository.get_user_by_email(user_email)
         if user is None:
